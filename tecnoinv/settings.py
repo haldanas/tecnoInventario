@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #locals
-    'usuarios','detalles','almacenes',
-    #'detalles','invntarios','movimientos'
+    'usuarios','detalles','almacenes','movimientos','referencias'
+    #'inventarios','registros',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +155,4 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+LOGIN_URL = "usuarios/login/"

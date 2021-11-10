@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}{{user.get_full_name}}(@{{user.username}}){% endblock title %}
+{% comment %} {% block title %}{{user.get_full_name}}(@{{user.username}}){% endblock title %} {% endcomment %}
 
 {% block container %}
 {% load static %}
-<section class="w-75 m-auto row mb-5" id="user">
+<section class="w-75 m-auto row mb-5" id="usuario">
     <div class="col-4 d-flex justify-content-center pr-5">
         <img class="rounded-circle "
-            src="{% if user.profile.picture %}{{ user.profile.picture.url }}{% else %}{% static 'img/default_user.jpg' %}{% endif %}"
+            src="{% if usuario.profile.picture %}{{ usuario.profile.picture.url }}{% else %}{% static 'img/default_user.jpg' %}{% endif %}"
             alt="" width="150px" height="150px">
     </div>
     <div class="col-8 py-3 d-flex flex-column justify-content-start">
         <div>
-            <h1 class="h2 d-inline-block">@{{ user.username }}</h1>
-            {% if request.user.pk is user.pk %}
-            <a href="{% url 'users:update_profile' %}">
+            <h1 class="h2 d-inline-block">@{{ usuario.username }}</h1>
+            {% if request.usuario.pk is usuario.pk %}
+            <a href="{% url 'usuario:update_profile' %}">
                 <button class="btn btn-outline-primary btn-sm mb-3 ml-3">Editar perfil</button>
             </a>
             {% else %}
@@ -24,8 +24,8 @@
             {% endif %}
         </div>
         <span class="font-weight-bolder">Posts {{posts|length}}</span>
-        <h2 class="h5 mb-0">{{ user.get_full_name }}</h2>
-        <p>{{ user.profile.biography }}</p>
+        <h2 class="h5 mb-0">{{ usuario.get_full_name }}</h2>
+        <p>{{ usuario.profile.biography }}</p>
     </div>
 </section>
 <hr>
