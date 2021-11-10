@@ -1,10 +1,10 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # django >> url http reques, settings urlconf >> url patherns busca el patch que marque >>  manda el (httpreq,) .
-def lista_usuarios(request):
-    return render(request, 'usuarios/usuarios.html')
+
 
 def login_view(request):
     """Login view"""
@@ -17,7 +17,21 @@ def login_view(request):
                                password=clave)
         if usuario:
             login(request, usuario )
-            return redirect('usuarios:detail')
+            return redirect('usuarios:home')
         else:
             return render(request, 'usuarios/login.html',{'error':'invalido'})
-    return render(request, 'home.html')
+    return render(request, 'usuarios/login.html')
+
+
+@login_required
+def home_view(request):
+    return render(request, 'usuarios/home.html')
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('usuarios:login')
+
+@login_required
+def lista_usuarios(request):
+    return render(request, 'usuarios/usuarios.html')

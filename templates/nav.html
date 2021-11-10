@@ -2,7 +2,7 @@
 
 <header class="shadow px-2">
   <nav class="row navbar navbar-light bg-light">
-    <a class="col-5" href=""
+    <a class="col-5" href="{% url 'usuarios:home' %}"
       ><img
         class="img-fluid"
         src="{% static 'img/logo.png' %}"
@@ -12,30 +12,31 @@
 
     <ul class="nav col-7 justify-content-end pr-0">
       <li class="nav-item">
-        <a class="nav-link px-2" href=""
+        <a class="nav-link px-2" href="{% url 'usuarios:home' %}"
           ><i data-feather="home" color="black"></i
         ></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link px-2" href=""
+        <a class="nav-link px-2" href="{% url 'usuarios:home' %}"
           ><i data-feather="plus-square" color="black"></i
         ></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link px-2" href=""
+        <a class="nav-link px-2" href="{% url 'usuarios:logout' %}"
           ><i data-feather="log-out" color="black"></i
         ></a>
       </li>
-      <li class="nav-item">
+      {% comment %} <li class="nav-item">
         <a
           class="nav-link px-1"
-          href=""
+          href="{% url 'users:detail' request.user.username %}"
           ><img
             class="rounded-circle"
+            src="{% if request.user.profile.picture %} {{ request.user.profile.picture.url }} {% else %} {% static 'img/default_user.jpg' %} {% endif %}"
             width="30px"
             height="30px"
         /></a>
-      </li>
+      </li> {% endcomment %}
     </ul>
   </nav>
 </header>

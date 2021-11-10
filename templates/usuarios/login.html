@@ -19,7 +19,7 @@
 
             <!-- url busca el nombre de una yrl y convertirla a una url normal 
             solo cambia un parametro en caso de cambio -->
-            <form class="w-75 mb-5 mt-5" method="POST" action=" {% url "login" %}">
+            <form class="w-75 mb-5 mt-5" method="POST" action=" {% url "usuarios:login" %}">
                 {% csrf_token %}
                 <!--    Es un token para realizar peticiones asi mismo CSRF-->
                 <div class="form-group">
