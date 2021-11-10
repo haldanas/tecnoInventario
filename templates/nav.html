@@ -1,0 +1,75 @@
+{% comment %} {% load static %}
+<nav class="navbar navbar-expand-lg fixed-top" id="main-navbar">
+    <div class="container">
+
+        <a class="navbar-brand pr-5" style="border-right: 1px solid #efefef;" href="">
+            <img src="{% static 'img/HB.svg' %}" height="35" class="d-inline-block align-top rounded-circle"/>
+        </a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a href="">
+                        
+                    </a>
+                </li>
+
+                <li class="nav-item nav-icon">
+                    <a href="">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item nav-icon">
+                    <a href="">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav> {% endcomment %}
+
+{% load static %}
+
+<header class="shadow px-2">
+  <nav class="row navbar navbar-light bg-light">
+    <a class="col-5" href=""
+      ><img
+        class="img-fluid"
+        src="{% static 'img/logo.png' %}"
+        alt=""
+        width="150px"
+    /></a>
+
+    <ul class="nav col-7 justify-content-end pr-0">
+      <li class="nav-item">
+        <a class="nav-link px-2" href=""
+          ><i data-feather="home" color="black"></i
+        ></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link px-2" href=""
+          ><i data-feather="plus-square" color="black"></i
+        ></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link px-2" href=""
+          ><i data-feather="log-out" color="black"></i
+        ></a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link px-1"
+          href=""
+          ><img
+            class="rounded-circle"
+            width="30px"
+            height="30px"
+        /></a>
+      </li>
+    </ul>
+  </nav>
+</header>
