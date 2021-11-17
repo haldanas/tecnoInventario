@@ -9,32 +9,33 @@
         {% comment %} <img class="my-3 mx-auto" src="{% static 'img/logo.png' %}" alt="" width="200px"> {% endcomment %}
         {% if error %}
         <div class="mt-2 alert alert-danger alert-dismissible fade show" role="alert">
-            {{ error }}
+            <strong>😔</strong> {{ error }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         {% endif %}
-        <form class="" action="" method="post">
+        <form class="" action="{% url 'usuarios:registro' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
-                <input class="form-control" type="text" name="username" placeholder="Username">
+                <input class="form-control" type="text" name="username" placeholder="Usuario">
             </div>
             <div class="form-group">
                 <input class="form-control" type="email" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password">
+                <input class="form-control" type="password" name="password" placeholder="Clave">
             </div>
             <div class="form-group">
-                <input class="form-control" type="password" name="password_confirmation" placeholder="Repeat password">
+                <input class="form-control" type="password" name="password_confirmation" placeholder="Repetir clave">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Register</button>
         </form>
     </div>
-    {% comment %} <div class="card p-3 my-3 text-center shadow-lg">
-        <span>¿Ya tengo una cuenta? <a class="text-decoration-none" href="">Ingresar.</a>
+    <div class="card p-3 my-3 text-center shadow-lg">
+        <span>¿Ya tengo una cuenta? <a class="text-decoration-none" href="{% url 'usuarios:login' %}">Ingresar.</a>
         </span>
-    </div> {% endcomment %}
+    </div>
+    {% comment %} <img src="{% static 'img/download.png' %}" alt="" width="350px"> {% endcomment %}
 </div>
 {% endblock container %}

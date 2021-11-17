@@ -1,4 +1,4 @@
-
+from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 #  from django.http import HttpRequest
@@ -6,9 +6,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    
-    path('', include(('usuarios.urls', 'usuarios'), namespace='home')),
-    path('usuarios/', include(('usuarios.urls', 'usuarios'), namespace='usuarios')),
+    path('admin/', admin.site.urls),
+    path('', include(('usuarios.urls', 'usuarios'), namespace='usuarios')),
+    path('', include(('almacenes.urls', 'almacenes'), namespace='almacenes')),
     
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
