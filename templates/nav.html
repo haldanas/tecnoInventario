@@ -7,10 +7,12 @@
         class="img-fluid"
         src="{% static 'img/logo.png' %}"
         alt=""
-        width="150px"
+        width="50px"
     /></a>
+    <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
 
-    <ul class="nav col-7 justify-content-end pr-0">
+{% comment %} col-7 {% endcomment %}
+    <ul class="nav col-6 justify-content-end pr-0">
       <li class="nav-item">
         <a class="nav-link px-2" href="{% url 'usuarios:home' %}"
           ><i data-feather="home" color="black"></i

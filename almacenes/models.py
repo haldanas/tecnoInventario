@@ -25,4 +25,4 @@ class Inventario(models.Model):
     
     inv_cantidad = models.TextField(max_length=50, blank=False)
     inv_creado = models.DateField(auto_now_add=True)
-    inv_modificado = models.DateField(auto_now=True) 
+    inv_modificado = models.DateField(auto_now=True)

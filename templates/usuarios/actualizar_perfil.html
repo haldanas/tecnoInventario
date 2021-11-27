@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head_content %}
+<title>@{{request.user.username }} | update</title>
+{% endblock %}
+
+{% comment %} {% block title %}{{ user.get_full_name }}{% endblock title %} {% endcomment %}
+
+{% comment %} {% load static %} {% endcomment %}
+
+{% block container %}
+<h3>actualiza usuarios</h3>
+{% comment %} <div class="media-body">
+    <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
+</div> {% endcomment %}
+
+ <form action="{% url 'usuarios:actualizar_perfil' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.errors %}
+        <p>{{ form.errors }}</p>
+    {% endif %}
+    <div class="form-group">
+        <label>Cargo</label>
+        <input class="form-control" name="cargo" value="{{perfil.cargo}}"/>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block mt-5">Actualizar información</button>
+</form>
+
+{% endblock container %}
