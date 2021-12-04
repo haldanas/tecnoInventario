@@ -6,35 +6,30 @@ from referencias.models import Referencia
 # Create your models here.
 
 class Detalle(models.Model):
-    "modelo ORM Detaill o Detalle"
+    id = models.AutoField(primary_key=True,db_column="d_codigo")
     
-    det_codigo = models.AutoField(primary_key=True)
+    almacen = models.ForeignKey(Almacen, on_delete=models.PROTECT,db_column="a_codigo")
+    perfil = models.ForeignKey(Perfil, on_delete=models.PROTECT,db_column="p_codigo")
+    movimiento = models.ForeignKey(Movimiento, on_delete=models.PROTECT,db_column="m_codigo")
     
-    alm_codigo= models.ForeignKey(Almacen, on_delete=models.PROTECT)
-    perfil = models.ForeignKey(Perfil, on_delete=models.PROTECT)
-    mov_codigo = models.ForeignKey(Movimiento, on_delete=models.PROTECT)
+    cantidad = models.CharField(max_length=100, blank=False,db_column="d_cantidad")
+    observacion = models.TextField(max_length=200, blank=True,db_column="d_observacion")
+    creado = models.DateField(auto_now_add=True,db_column="d_creado")
+    modificado = models.DateField(auto_now=True,db_column="d_modificado")
     
-    #movimeinto
-    det_cantidad = models.CharField(max_length=100, blank=False)
-    det_estado = models.TextChoices(
-        'Procesado','Reversado',
-    )
-    det_observacion = models.TextField(max_length=200, blank=True)
-    det_creado = models.DateField(auto_now_add=True)
-    det_modificado = models.DateField(auto_now=True)
-    registros = models.ManyToManyField(Referencia, through='Registro') 
+    registros = models.ManyToManyField(Referencia, through='registro')
     
     def __str__(self) -> str: 
-        return f'{self.det_codigo}'
+        return f'{self.id}'
 
 # Create your models here.
 class Registro(models.Model):
     "modelo ORM registros"
     
-    det_codigo=models.ForeignKey(Detalle, on_delete=models.CASCADE)
-    ref_codigo=models.ForeignKey(Referencia, on_delete=models.CASCADE)
+    detalle= models.ForeignKey(Detalle, on_delete=models.CASCADE, db_column="d_codigo")
+    referencia= models.ForeignKey(Referencia, on_delete=models.CASCADE,db_column="r_codigo")
     
-    reg_mac= models.TextField(max_length=100)
-    reg_sn= models.TextField(max_length=100)
-    u_creado = models.DateField(auto_now_add=True)
-    u_modificado = models.DateField(auto_now=True)
+    mac= models.TextField(max_length=100,db_column="reg_mac")
+    sn= models.TextField(max_length=100,db_column="reg_sn")
+    creado = models.DateField(auto_now_add=True,db_column="reg_creado")
+    modificado = models.DateField(auto_now=True,db_column="reg_modificado")

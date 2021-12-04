@@ -1,94 +1,66 @@
+#django
+from django.contrib.auth.mixins import LoginRequiredMixin   
+from django.views.generic import View
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.db.utils import IntegrityError
-# Create your views here.
-# django >> url http reques, settings urlconf >> url patherns busca el patch que marque >>  manda el (httpreq,)
-# Exception
-
-# Models
+from django.urls import reverse_lazy
+#from django.core.urlresolvers import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import (CreateView, UpdateView, DeleteView)
+#modelos
 from django.contrib.auth.models import User
-from usuarios.models import Perfil
-from usuarios.form import PerfilForm
 
-@login_required
-def registro_view(request): 
-    print(request)
-    
+
+class HomeView(View):
+    def get(self, request):        
+        return render(request,'auth/user_home.html')
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        #return render(request,'auth/user_home.html')
+        return redirect('usuarios:login')
+
+#class LoginView(View):
+def loginView(request):
+    if not request.user.is_anonymous:
+        return redirect('usuarios:home')
     if request.method == 'POST':
         username = request.POST['username']
-        passwd = request.POST['password']
-        passwd_confirmation = request.POST['password_confirmation']
-
-        if passwd != passwd_confirmation:
-            return render(request, 'usuarios/registro.html', {'error': 'Password confirmation does not match'})
-
-        try:
-            usuario_nuevo = User.objects.create_user(username=username, password=passwd)
-        except IntegrityError:
-            return render(request, 'usuarios/registro.html', {'error': 'Username is already in user'})
-
-        # usuario.first_name = request.POST['first_name']
-        # usuario.last_name = request.POST['last_name']
-        usuario_nuevo.email = request.POST['email']
-        usuario_nuevo.save()
-        
-        perfil = Perfil(usuario=usuario_nuevo)
-        perfil.save()
-
-        return redirect('usuarios:login')
-    return render(request,'usuarios/registro.html')
-
-
-def login_view(request):
-    if not request.user.is_anonymous:
-            return redirect('usuarios:home')
-    else:
-        if request.method == 'POST':    
-            usuario = request.POST['usuario']
-            clave = request.POST['clave']
-            
-            usuario = authenticate(request, username= usuario,
-                                password=clave)
-            if usuario:
-                login(request, usuario )
+        password = request.POST['password']
+        user = authenticate(request,username=username, password=password)
+        print("post")
+        if user:
+            if user.is_active:
+                login(request, user)
                 return redirect('usuarios:home')
             else:
-                return render(request, 'usuarios/login.html',{'error':'Contraseña o clave no coinciden'})
-    return render(request, 'usuarios/login.html')
-
-@login_required
-def home_view(request):
-    return render(request, 'usuarios/home.html')
-
-@login_required
-def logout_view(request):
-    logout(request)
-    return redirect('usuarios:login')
-
-@login_required
-def actualizarPerfil(request):
-    perfil = request.user.perfil
-    #return render(request, 'usuarios/actualizar_perfil.html'
-    if request.method == 'POST':
-        form = PerfilForm(request.POST, request.FILES)
-        if form.is_valid():
-            data = form.cleaned_data
-
-            perfil.cargo = data['cargo']
-            perfil.save()
-
+                return render(request, 'auth/login.html',{'error':'Contraseña o clave no coinciden'})
+        else:
+            #return HttpResponseRedirect(settings.LOGIN_URL)
             return redirect('usuarios:home')
+    return render(request, 'auth/login.html')
 
-    else:
-        form = PerfilForm()
+class PerfilList(ListView):
+    model = User
 
-    return render(
-        request=request,
-        template_name='usuarios/actualizar_perfil.html',
-        context={
-            'perfil':perfil,
-            'user': request.user,
-            'form': form    
-        }    
-    )
+class PerfilDetail(DetailView):
+    model = User
+
+class PerfilCreation(CreateView):
+    model = User
+    success_url = reverse_lazy('usuarios:list')
+    fields = ['username','first_name','last_name', 'password', 'email']
+
+class PerfilUpdate(UpdateView):
+    model = User
+    success_url = reverse_lazy('usuarios:list')
+    fields = ['username','first_name','last_name', 'password', 'email']
+
+
+class PerfilDelete(DeleteView):
+    model = User
+    success_url = reverse_lazy('usuarios:list')

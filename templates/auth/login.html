@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock title %}
-
+{% block title %}Login{% endblock title %}  
 {% block container %}
 {% load static %}
 <div class="full-h row d-flex justify-content-center align-items-center">
@@ -16,25 +15,20 @@
                 </button>
             </div>
             {% endif %}
-
             <!-- url busca el nombre de una yrl y convertirla a una url normal 
             solo cambia un parametro en caso de cambio -->
-            <form class="w-75 mb-5 mt-5" method="POST" action=" {% url "usuarios:login" %}">
+            <form class="w-75 mb-5 mt-5" method="POST" action="{% url "usuarios:login" %}">
                 {% csrf_token %}
                 <!--    Es un token para realizar peticiones asi mismo CSRF-->
                 <div class="form-group">
-                    <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+                    <input type="text" class="form-control" name="username" placeholder="username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="clave" placeholder="Clave">
+                    <input type="password" class="form-control" name="password" placeholder="password">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Sing In</button>
             </form>
-
         </div>
-        {% comment %} <div class="card w-card p-3 my-3 text-center shadow-lg">
-            <span>¿No tienes una cuenta aun? <a class="text-decoration-none" href="">Registrate.</a> </span>
-        </div> {% endcomment %}
     </div>
 </div>
 {% endblock container %}

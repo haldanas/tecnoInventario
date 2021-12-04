@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Crear inventario</title>
+{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-6 pt-3 pb-3" id="profile-box">
+                <h4 class="mb-4">Nuevo inventario</h4>
+                <form action="{% url 'almacenes:inventario' %}" method="POST">
+                    {% csrf_token %}
+                    
+                    {% for referecia in referencia_lista %}
+                    <li>
+                        <p>{{ referecia.nombre }}</p> ({{referecia.ref_nombre}})
+                    </li>
+                    {% endfor %}
+                    
+                    <button type="submit" class="btn btn-primary btn-block mt-5">Agregar!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

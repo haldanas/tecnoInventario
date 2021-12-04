@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block container %}
+{% load static %}
+<p>
+    <a href="{% url "usuarios:new" %}">Agregar usuario</a>
+</p>
+<ul>
+    {% for user in object_list %}
+        <li>
+            <p>{{ user.username }}</p>
+            <p>{{ user.email }}</p>
+            <p>{{ user.is_staff }}</p>
+            <p>
+                <a href="{% url "usuarios:detail" user.id %}">Ver</a> | 
+                <a href="{% url "usuarios:edit" user.id %}">Editar</a> | 
+                {% comment %} <a href="{% url "usuarios:delete" perfil.id %}">Borrar</a>  {% endcomment %}
+            </p>
+        </li>
+    {% endfor %}
+    <a href="{% url "usuarios:home" %}">Regresar</a>
+</ul>
+{% endblock container %}

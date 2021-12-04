@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block container %}
+{% load static %}
+<p>
+    <a href="{% url "almacenes:new" %}">Agregar almacen</a>
+</p>
+<ul>
+    {% for almacen in object_list %}
+        <li>
+            <p>{{ almacen.nombre }}</p>
+            <p>{{ almacen.direccion }}</p>
+            <p>
+                <a href="{% url "almacenes:detail" almacen.id %}">Ver</a> | 
+                <a href="{% url "almacenes:edit" almacen.id %}">Editar</a> | 
+                {% comment %} <a href="{% url "almacenes:delete" perfil.id %}">Borrar</a>  {% endcomment %}
+            </p>
+        </li>
+    {% endfor %}
+    <a href="{% url "usuarios:home" %}">Regresar</a>
+</ul>
+{% endblock container %}

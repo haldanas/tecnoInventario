@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block container %}
+{% load static %}
+<div class="full-h row d-flex justify-content-center align-items-center">
+    <div class="col-md-6 col-sm-12 d-flex flex-column align-items-center order-1 order-md-2 my-5">
+        <div class="card w-card shadow-lg align-items-center">
+            <button type="" class="btn btn-info btn-block" >
+                <a href="{% url 'usuarios:list' %}">Usuarios</a>
+            </button>
+            <button type="" class="btn btn-primary btn-block">
+                <a href="{% url 'referencias:list' %}">Referencias</a>
+            </button>
+            <button type="" class="btn btn-primary btn-block">
+                <a href="{% url 'almacenes:list' %}">Almacen</a>
+            </button>
+           {% comment %}  <button type="" class="btn btn-info btn-block">
+                <a href="{% url 'referencias:referencia' %}">Referencias</a>
+            </button> {% endcomment %}
+        </div>
+    </div>
+</div>
+{% endblock container %}

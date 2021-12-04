@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Sing Up{% endblock title %}
+{% block title %}Formulario{% endblock title %}
 
 {% block container %}
 {% load static %}
@@ -15,7 +15,14 @@
             </button>
         </div>
         {% endif %}
-        <form class="" action="{% url 'usuarios:registro' %}" method="post">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+            
+        </form>
+        
+        {% comment %} <form class="" action="{% url 'usuarios:registro' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
                 <input class="form-control" type="text" name="username" placeholder="Usuario">
@@ -30,11 +37,13 @@
                 <input class="form-control" type="password" name="password_confirmation" placeholder="Repetir clave">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Register</button>
-        </form>
+        </form> {% endcomment %}
     </div>
+    <a href="{% url "usuarios:list" %}">Regresar</a>
     <div class="card p-3 my-3 text-center shadow-lg">
-        <span>¿Ya tengo una cuenta? <a class="text-decoration-none" href="{% url 'usuarios:login' %}">Ingresar.</a>
-        </span>
+            
+        {% comment %} <span>¿Ya tengo una cuenta? <a class="text-decoration-none" href="{% url 'usuarios:login' %}">Ingresar.</a>
+        </span> {% endcomment %}
     </div>
     {% comment %} <img src="{% static 'img/download.png' %}" alt="" width="350px"> {% endcomment %}
 </div>

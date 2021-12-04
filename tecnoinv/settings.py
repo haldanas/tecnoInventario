@@ -40,8 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #locals
-    'usuarios','detalles','almacenes','movimientos','referencias'
-    #'inventarios','registros',
+    'usuarios',
+    'detalles',
+    'almacenes',
+    'movimientos',
+    'referencias',
+    #'inventarios',
+    #'registros',
 ]
 #El orden si importa
 MIDDLEWARE = [
@@ -52,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'tecnoinv.middleware.PerfilCompletoMiddleware',
+    # 'tecnoinv.middleware.PerfilCompletoMiddleware',
 ]
 
 ROOT_URLCONF = 'tecnoinv.urls'

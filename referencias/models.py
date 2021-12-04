@@ -4,13 +4,12 @@ from django.db import models
 class Referencia(models.Model):
     "modelo ORM referencias"
     
-    ref_codigo = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True,db_column="r_codigo")
+    nombre = models.TextField(max_length=50,db_column="r_nombre")
+    marca = models.TextField(max_length=50,db_column="r_marca")
+    observacion = models.TextField(max_length=200, blank=True,db_column="r_observacion")
+    creado = models.DateField(auto_now_add=True,db_column="r_creado")
+    modificado = models.DateField(auto_now=True,db_column="r_modificado")
     
-    ref_marca = models.TextField(max_length=50)
-    ref_nombre = models.TextField(max_length=50)
-    ref_observacion = models.TextField(max_length=200, blank=True)
-    ref_creado = models.DateField(auto_now_add=True)
-    ref_modificado = models.DateField(auto_now=True)
-    
-    def __str__(self) -> str: 
-        return f'{self.ref_codigo}'
+    def __unicode__(self) -> str: 
+        return self.id

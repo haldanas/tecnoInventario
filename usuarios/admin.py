@@ -16,7 +16,7 @@ class PerfilAdmin (admin.ModelAdmin):
     #list_editable = ()
     search_fields = ('usuario__email','usuario__username','usuario__first_name',
                      'usuario__last_name')
-    list_filter = ('u_creado','u_modificado','usuario__is_active','usuario__is_staff')
+    list_filter = ('creado','modificado','usuario__is_active','usuario__is_staff')
     
     fieldsets = (
         ('Profile', {
@@ -26,13 +26,13 @@ class PerfilAdmin (admin.ModelAdmin):
         }),
         ('Metadata', {
             "fields": (
-                ('u_creado','u_modificado',),
+                ('creado','modificado',),
             ),
         }),
     )
     
     #existen campos que no se pueden editar como las fechas 
-    readonly_fields =('u_creado','u_modificado',)
+    readonly_fields =('creado','modificado',)
     
 # las dos clases espesifican dentro del modulo de user 
 # el perfil para qudaar en una sola vista

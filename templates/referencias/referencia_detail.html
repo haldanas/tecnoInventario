@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block container %}
+{% load static %}
+<h1>{{ referencia.nombre }}</h1>
+<p>Cargo: <i>{{ referencia.marca }}</i></p>
+<p>Cargo: <i>{{ referencia.observacion }}</i></p>
+<p>
+    <a href="{% url "referencias:list" %}">Regresar</a>
+</p>
+{% endblock container %}

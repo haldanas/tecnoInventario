@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block container %}
+{% load static %}
+<p>
+    <a href="{% url "referencias:new" %}">Agregar referencia</a>
+</p>
+<ul>
+    {% for referencia in object_list %}
+        <li>
+            <p>{{ referencia.nombre }}</p>
+            <p>{{ referencia.marca }}</p>
+            <p>{{ referencia.observacion }}</p>
+            <p>
+                <a href="{% url "referencias:detail" referencia.id %}">Ver</a> | 
+                <a href="{% url "referencias:edit" referencia.id %}">Editar</a> | 
+                {% comment %} <a href="{% url "referencias:delete" perfil.id %}">Borrar</a>  {% endcomment %}
+            </p>
+        </li>
+    {% endfor %}
+    <a href="{% url "usuarios:home" %}">Regresar</a>
+</ul>
+{% endblock container %}
