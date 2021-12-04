@@ -13,7 +13,7 @@ class Movimiento(models.Model):
         (OPERA, 'Opeara'),
     ]
     #ajuste, entrada y salida
-    id= models.CharField(primary_key=True, max_length=50,db_column="m_codigo")
+    id= models.AutoField(primary_key=True,db_column="m_codigo")
     nombre= models.TextField(max_length=50, blank=False,db_column="m_nombre")
     operador=models.CharField(max_length=5, blank=False,db_column="m_operador")
     tipo = models.CharField(

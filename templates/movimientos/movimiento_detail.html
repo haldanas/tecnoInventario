@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block container %}
+{% load static %}
+<h1>{{ movimiento.nombre }}</h1>
+<p>Cargo: <i>{{ movimiento.operador }}</i></p>
+<p>Cargo: <i>{{ movimiento.tipo }}</i></p>
+<p>
+    <a href="{% url "movimientos:list" %}">Regresar</a>
+</p>
+{% endblock container %}

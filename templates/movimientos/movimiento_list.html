@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block container %}
+{% load static %}
+<p>
+    <a href="{% url "movimientos:new" %}">Agregar movimeinto</a>
+</p>
+<ul>
+    {% for movimiento in object_list %}
+        <li>
+            <p>{{ movimiento.nombre }}</p>
+            <p>{{ movimiento.operador }}</p>
+            <p>{{ movimiento.tipo }}</p>
+            <p>
+                <a href="{% url "movimientos:detail" movimiento.id %}">Ver</a>
+                <a href="{% url "movimientos:edit" movimiento.id %}">Editar</a>
+                {% comment %} <a href="{% url "referencias:delete" perfil.id %}">Borrar</a>  {% endcomment %}
+            </p>
+        </li>
+    {% endfor %}
+    <a href="{% url "usuarios:home" %}">Regresar</a>
+</ul>
+{% endblock container %}

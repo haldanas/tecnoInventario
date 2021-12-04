@@ -13,9 +13,13 @@
             <button type="" class="btn btn-primary btn-block">
                 <a href="{% url 'almacenes:list' %}">Almacen</a>
             </button>
-           {% comment %}  <button type="" class="btn btn-info btn-block">
-                <a href="{% url 'referencias:referencia' %}">Referencias</a>
-            </button> {% endcomment %}
+            <button type="" class="btn btn-primary btn-block">
+                <a href="{% url 'movimientos:list' %}">Operaciones</a>
+            </button>
+            {% comment %} inventarios salen de la vista despues, para archivos {% endcomment %}
+            <button type="" class="btn btn-primary btn-block">
+                <a href="{% url 'inventarios:list' %}">INV</a>
+            </button>
         </div>
     </div>
 </div>

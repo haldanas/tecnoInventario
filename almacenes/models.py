@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import tree
 from referencias.models import Referencia
 
 class Almacen(models.Model):
@@ -13,13 +14,13 @@ class Almacen(models.Model):
     #through para nuevas tablas con atributos
     referencias = models.ManyToManyField(Referencia, through='inventario') 
 
-    def __unicode__(self) -> str: 
-        return self.id
+    def __str__(self) -> str: 
+        return self.nombre
     
 class Inventario(models.Model):
     almacen = models.ForeignKey(Almacen, on_delete=models.CASCADE,db_column="a_codigo")
     referencia = models.ForeignKey(Referencia, on_delete=models.CASCADE,db_column="r_codigo")
     
-    cantidad = models.IntegerField(default=0,db_column="i_cantidad")
+    cantidad = models.IntegerField(default=0,db_column="i_cantidad",unique=True)
     creado = models.DateField(auto_now_add=True,db_column="i_creado")
     modificado = models.DateField(auto_now=True,db_column="i_modificado")

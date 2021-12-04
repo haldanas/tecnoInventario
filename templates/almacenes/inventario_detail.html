@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block container %}
+{% load static %}
+<h1>{{ inventario.almacen }}</h1>
+<p>almacen: <i>{{ inventario.almacen}}</i></p>
+<p>referencia: <i>{{ inventario.referencia}}</i></p>
+<p>cantidad: <i>{{ inventario.cantidad}}</i></p>
+<p>
+    <a href="{% url "inventarios:list" %}">Regresar</a>
+</p>
+{% endblock container %}

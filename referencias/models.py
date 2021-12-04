@@ -11,5 +11,5 @@ class Referencia(models.Model):
     creado = models.DateField(auto_now_add=True,db_column="r_creado")
     modificado = models.DateField(auto_now=True,db_column="r_modificado")
     
-    def __unicode__(self) -> str: 
-        return self.id
+    def __str__(self) -> str: 
+        return self.nombre

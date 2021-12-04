@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Formulario{% endblock title %}
+{% block container %}
+{% load static %}
+<div class="full-h d-flex flex-column justify-content-center align-items-center">
+    <div class="card p-5 shadow-lg">
+        {% if error %}
+        <div class="mt-2 alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>😔</strong> {{ error }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" /> 
+        </form>
+    </div>
+    <a href="{% url "movimientos:list" %}">Regresar</a>
+    <div class="card p-3 my-3 text-center shadow-lg">
+    </div>
+</div>
+{% endblock container %}

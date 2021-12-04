@@ -10,10 +10,10 @@ from django.contrib import admin
 urlpatterns = [
     #path('', include(('usuarios.urls', 'usuarios'), namespace='usuarios')),
     url(r'^', include(('usuarios.urls','usuarios'), namespace='usuarios')),
-    #path('', include(('referencias.urls', 'referencias'), namespace='referencias')),
     url(r'^', include(('referencias.urls','referencias'), namespace='referencias')),
-    #path('', include(('almacenes.urls', 'almacenes'), namespace='almacenes')),
+    url(r'^', include(('movimientos.urls','movimientos'), namespace='movimientos')),
     url(r'^', include(('almacenes.urls','almacenes'), namespace='almacenes')),
+    url(r'^', include(('almacenes.urls','inventarios'), namespace='inventarios')),
     #path('admin/', admin.site.urls),
     url(r'^admin/', admin.site.urls),
     

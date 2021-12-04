@@ -20,7 +20,7 @@ class Detalle(models.Model):
     registros = models.ManyToManyField(Referencia, through='registro')
     
     def __str__(self) -> str: 
-        return f'{self.id}'
+        return self.id
 
 # Create your models here.
 class Registro(models.Model):
