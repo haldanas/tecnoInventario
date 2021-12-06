@@ -17,6 +17,15 @@
             </p>
         </li>
     {% endfor %}
+    
+    <form method="POST" enctype="multipart/form-data"  
+    action="{% url "inventarios:entrada" %}">
+    {% csrf_token %}
+        <input type="file" class="form-control" name="uploadedFile">
+        <br>
+        <button type="submit" id="button_id" value="Upload">Submit</button>
+    </form>
+
     <a href="{% url "usuarios:home" %}">Regresar</a>
 </ul>
 {% endblock container %}

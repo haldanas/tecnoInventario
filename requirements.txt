@@ -3,3 +3,6 @@ django
 #django-admin
 #python3 manage.py
 #python3 manage.py runserver
+pandas
+Pillow
+openpyxl

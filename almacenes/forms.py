@@ -10,4 +10,3 @@ class InventarioForm(forms.Form):
     alm_codigo = forms.IntegerField(required=True)
     ref_codigo = forms.IntegerField(required=True)
     inv_cantidad = forms.IntegerField(required=True)
-     

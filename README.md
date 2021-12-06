@@ -1,7 +1,7 @@
 
  
 # TECNOINVENTARIOS
-
+https://github.com/haldanas/tecnoInventario/tree/developer
 
 ### setting environment variables
 First install python3 , pip, and virtualenv. Run:
@@ -41,3 +41,4 @@ App: Conjunto de código que se encarga de resolver una parte
 muy específica del proyecto, contiene sus modelos, vistas, urls, etc.
 
 Patrón de diseño: Solución común a un problema particular.
+

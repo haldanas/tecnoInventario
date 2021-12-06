@@ -1,5 +1,8 @@
 from django.conf.urls import url
+from django.urls import path
 from django.contrib.auth.decorators import login_required
+
+from . import views
 from .views import (
     AlmList,
     AlmDetail,
@@ -25,4 +28,5 @@ urlpatterns = [
     url(r'^inventarios/nuevo$', login_required(InvCreation.as_view()), name='new'),
     url(r'^inventarios/editar/(?P<pk>\d+)$', login_required(InvUpdate.as_view()), name='edit'),
     url(r'^inventarios/borrar/(?P<pk>\d+)$', login_required(InvDelete.as_view()), name='delete'),
+    path(route= 'inventarios',view = views.entrada, name='entrada'),    
 ]
